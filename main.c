@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 09:57:58 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/11/29 10:57:20 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/01 20:17:30 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,22 @@
 void	rotate_smallest_to_top(t_list **stack, int size, int index,
 		t_list *smallest)
 {
-	t_list	*head;
+	t_list	*new_head;
 
-	head = *stack;
 	if (index <= size / 2)
 	{
-		while (head != smallest)
+		while (*stack != smallest)
 		{
-			head = op_ra(stack);
-			*stack = head;
+			new_head = op_rra(stack);
+			*stack = new_head;
 		}
 	}
 	else
 	{
-		while (head != smallest)
+		while (*stack != smallest)
 		{
-			head = op_rra(stack);
-			*stack = head;
+			new_head = op_ra(stack);
+			*stack = new_head;
 		}
 	}
 }
@@ -42,10 +41,9 @@ void	put_smallest_number_top(t_list **stack)
 	t_list	*smallest;
 	int		index;
 	int		size;
-	t_list	*last;
 
 	smallest = *stack;
-	tmp = *stack;
+	tmp = (*stack)->next;
 	size = 0;
 	index = 0;
 	while (tmp)
@@ -58,27 +56,33 @@ void	put_smallest_number_top(t_list **stack)
 		}
 		tmp = (tmp)->next;
 	}
-	last = ft_lstlast(*stack);
-	printf("the first is %s \n the  last is %s \n", (*stack)->content,
-			(last)->content);
 	rotate_smallest_to_top(stack, size, index, smallest);
-	last = ft_lstlast(*stack);
-	printf("the first is %s \n the  last is %s", (*stack)->content,
-			(last)->content);
 }
+void f(){system("leaks a.out");}
+void pr(void *a){printf("this is %s",a);}
 
 int	main(int argc, char const *argv[])
 {
+	//atexit(f);
 	t_list	*stack_a;
+	t_list	*stack_b;
 	t_list	*stack_tmp;
+	int		**lis_and_size;
+	int		lis_size;
 
+	int i = 0;
+	stack_a = 0;
 	if (argc < 2 || input_checker(argc, argv) == 0)
 		return (ft_putstr_fd("Error", 1), 0);
 	initialize_stack(&stack_a, argc, argv);
 	initialize_stack(&stack_tmp, argc, argv);
-	//need to free *stack_tmp when i know the longest sub
 	put_smallest_number_top(&stack_tmp);
-	while(1)
-		system("leaks a.out");
+	lis_and_size = lis(stack_tmp);
+	filter_lis(lis_and_size[1], lis_and_size[0],stack_a, stack_b);
+	ft_lstiter(stack_b,pr);
+	// ft_lstclear(&stack_a, free);
+	// ft_lstclear(&stack_tmp, free);
+	// free(lis_and_size);
+	// //system("leaks a.out");
 	return (0);
 }

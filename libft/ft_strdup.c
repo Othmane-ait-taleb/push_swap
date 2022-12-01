@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:31:12 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/10/20 17:08:33 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:02:26 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,3 @@ char	*ft_strdup(const char *s1)
 	__p[i] = '\0';
 	return (__p);
 }
-
-// int main()
-// {
-//     char t[] = "io";
-//     char *t1 = ft_strdup(t);
-//     printf("%c",t1[1]);
-// }

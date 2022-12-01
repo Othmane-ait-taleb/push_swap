@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_lstnew.c                                         :+:      :+:    :+:   */
+/*   op_pb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 09:33:58 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/11/30 20:27:39 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/01 09:47:18 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/01 11:31:04 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_list	*d_lstnew(void *content)
+void	op_pb(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*rtr;
+	t_list	*last;
 
-	rtr = malloc(sizeof(t_list));
-	if (!rtr)
-		return (NULL);
-	rtr->content = content;
-	rtr->next = NULL;
-	rtr->prev = NULL;
-	return (rtr);
+	if (!*stack_b || !*stack_a)
+		return ;
+	last = ft_lstlast(*stack_a);
+	d_lstadd_back(stack_b, last);
+	(last->prev)->next = NULL;
+
 }

@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_lstnew.c                                         :+:      :+:    :+:   */
+/*   filter_lis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 09:33:58 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/11/30 20:27:39 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/01 10:33:02 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/01 12:36:22 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_list	*d_lstnew(void *content)
+void	filter_lis(int	*array, int *size, t_list *stack_a, t_list *stack_b)
 {
-	t_list	*rtr;
+	int		i;
+	int		flag;
 
-	rtr = malloc(sizeof(t_list));
-	if (!rtr)
-		return (NULL);
-	rtr->content = content;
-	rtr->next = NULL;
-	rtr->prev = NULL;
-	return (rtr);
+	flag = 0;
+	i = 0;
+	while (stack_a)
+	{
+		while (i < *size)
+		{			
+			if (ft_atoi((stack_a)->content) == array[i])
+			{
+				flag = 1;
+				break ;
+			}
+			i++;
+		}
+		if (flag == 1)
+		{
+			op_ra(&stack_a);
+			flag = 0;
+		}
+		else
+			op_pb(&stack_a, &stack_b);
+		stack_a = ((stack_a)->next);
+	}
 }
