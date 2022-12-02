@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 09:34:55 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/01 20:15:18 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:24:31 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	**lis(t_list *list)
 	int	*size;
 	int	**rtr;
 
-	rtr = malloc(sizeof(int *) * 2);
 	size = malloc(sizeof(int));
 	*size = ft_lstsize(list);
 	array = list_to_array(list, *size);
@@ -111,7 +110,7 @@ int	**lis(t_list *list)
 	sub_seq_arr = alloc_array(0, *size);
 	find_lis(array, length_arr, sub_seq_arr, *size);
 	rtr = index_to_array(array, length_arr, sub_seq_arr, *size);
-	return (free(array), free(length_arr), free(sub_seq_arr), rtr);
+	return (free(size), free(array), free(length_arr), free(sub_seq_arr), rtr);
 }
 
 // int	main()

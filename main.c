@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 09:57:58 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/01 20:17:30 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:36:03 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void pr(void *a){printf("this is %s",a);}
 
 int	main(int argc, char const *argv[])
 {
-	//atexit(f);
+	atexit(f);
 	t_list	*stack_a;
 	t_list	*stack_b;
 	t_list	*stack_tmp;
@@ -78,11 +78,15 @@ int	main(int argc, char const *argv[])
 	initialize_stack(&stack_tmp, argc, argv);
 	put_smallest_number_top(&stack_tmp);
 	lis_and_size = lis(stack_tmp);
-	filter_lis(lis_and_size[1], lis_and_size[0],stack_a, stack_b);
-	ft_lstiter(stack_b,pr);
-	// ft_lstclear(&stack_a, free);
-	// ft_lstclear(&stack_tmp, free);
-	// free(lis_and_size);
-	// //system("leaks a.out");
+	filter_lis(lis_and_size[1], lis_and_size[0],&stack_a, &stack_b);
+	ft_lstiter(stack_a,pr);
+
+	ft_lstclear(&stack_tmp, free);
+	ft_lstclear(&stack_a, free);
+	ft_lstclear(&stack_b, free);
+	free(lis_and_size[0]);
+	free(lis_and_size[1]);
+	free(lis_and_size);
+	//system("leaks a.out");
 	return (0);
 }
