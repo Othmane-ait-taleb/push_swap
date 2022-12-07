@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 09:34:55 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/02 12:24:31 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:24:27 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	*alloc_array(int a, int size)
 	return (array);
 }
 
-int	**index_to_array(int	*array, int *length_arr, int *sub_arr, int size)
+int	**index_to_array(int *array, int *length_arr, int *sub_arr, int size)
 {
 	int	max_index;
 	int	i;
@@ -53,7 +53,7 @@ int	**index_to_array(int	*array, int *length_arr, int *sub_arr, int size)
 	while (i < size)
 	{
 		if (length_arr[i] > length_arr[max_index])
-		max_index = i;
+			max_index = i;
 		i++;
 	}
 	*lis_size = length_arr[max_index];
@@ -113,7 +113,7 @@ int	**lis(t_list *list)
 	return (free(size), free(array), free(length_arr), free(sub_seq_arr), rtr);
 }
 
-// int	main()
+// int	main(void)
 // {
 // 	int		i;
 // 	t_list	*list;

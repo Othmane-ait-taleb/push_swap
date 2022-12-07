@@ -6,7 +6,7 @@
 #    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:20:33 by otait-ta          #+#    #+#              #
-#    Updated: 2022/12/01 11:30:45 by otait-ta         ###   ########.fr        #
+#    Updated: 2022/12/05 10:04:01 by otait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ CFILES	=	./libft/ft_isalpha.c ./libft/ft_isdigit.c ./libft/ft_isalnum.c ./libft/
 	   		./libft/ft_putnbr_fd.c ./libft/ft_strtrim.c ./libft/ft_memcpy.c ./libft/ft_memmove.c ./libft/ft_memset.c \
 	   		./libft/ft_memcmp.c ./libft/ft_memchr.c ./libft/ft_bzero.c ./libft/ft_calloc.c ./libft/ft_striteri.c\
 			./doubly_lst_helpers/d_lstadd_back.c ./doubly_lst_helpers/d_lstnew.c\
-			./stack_helpers/initialize_stack.c ./stack_helpers/op_ra.c ./stack_helpers/op_rra.c ./stack_helpers/op_pb.c\
+			./stack_helpers/initialize_stack.c ./stack_helpers/op_ra.c ./stack_helpers/op_rra.c ./stack_helpers/op_pb.c \
+			./stack_helpers/put_in_correct_position.c \
 			./string_helpers/inputChecker.c \
 			./LIS/lis.c ./LIS/filter_lis.c \
 
