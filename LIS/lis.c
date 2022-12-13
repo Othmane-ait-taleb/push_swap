@@ -6,35 +6,22 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 09:34:55 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/06 09:24:27 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/13 12:12:54 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	*list_to_array(t_list *list, int size)
-{
-	int	*array;
-	int	i;
-
-	i = 0;
-	array = malloc(sizeof(int) * size);
-	while (list)
-	{
-		array[i] = ft_atoi(list->content);
-		list = list->next;
-		i++;
-	}
-	return (array);
-}
 
 int	*alloc_array(int a, int size)
 {
 	int	*array;
 
 	array = malloc(sizeof(int) * size);
-	while (--size >= 0)
-		array[size] = a;
+	if (array)
+	{
+		while (--size >= 0)
+			array[size] = a;
+	}
 	return (array);
 }
 
@@ -48,17 +35,14 @@ int	**index_to_array(int *array, int *length_arr, int *sub_arr, int size)
 
 	lis_size = malloc(sizeof(int));
 	rtr = malloc(sizeof(int *) * 2);
-	max_index = 0;
-	i = 1;
-	while (i < size)
-	{
-		if (length_arr[i] > length_arr[max_index])
-			max_index = i;
-		i++;
-	}
+	if (!lis_size || !rtr)
+		return (NULL);
+	max_index = max_of_array(length_arr, size);
 	*lis_size = length_arr[max_index];
 	*rtr = lis_size;
 	lis = malloc(sizeof(int) * *lis_size);
+	if (!lis)
+		return (NULL);
 	i = *lis_size;
 	while (--i >= 0)
 	{
@@ -112,32 +96,3 @@ int	**lis(t_list *list)
 	rtr = index_to_array(array, length_arr, sub_seq_arr, *size);
 	return (free(size), free(array), free(length_arr), free(sub_seq_arr), rtr);
 }
-
-// int	main(void)
-// {
-// 	int		i;
-// 	t_list	*list;
-// 	int		**a;
-
-// 	list = 0;
-// 	d_lstadd_back(&list, d_lstnew("0"));
-// 	d_lstadd_back(&list, d_lstnew("4"));
-// 	d_lstadd_back(&list, d_lstnew("12"));
-// 	d_lstadd_back(&list, d_lstnew("2"));
-// 	d_lstadd_back(&list, d_lstnew("10"));
-// 	d_lstadd_back(&list, d_lstnew("6"));
-// 	d_lstadd_back(&list, d_lstnew("9"));
-// 	d_lstadd_back(&list, d_lstnew("13"));
-// 	d_lstadd_back(&list, d_lstnew("3"));
-// 	d_lstadd_back(&list, d_lstnew("11"));
-// 	d_lstadd_back(&list, d_lstnew("7"));
-// 	d_lstadd_back(&list, d_lstnew("15"));
-
-// 	a = lis(list);
-// 	i = 0;
-// 	while (i <= 6)
-// 	{
-// 		printf("%d ", a[1][i++]);
-// 	}
-// 	return (0);
-// }

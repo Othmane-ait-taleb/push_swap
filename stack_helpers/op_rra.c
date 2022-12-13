@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:50:03 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/01 10:16:59 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:31:07 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ t_list	*op_rra(t_list **stack)
 	t_list	*new_head;
 	t_list	*last;
 
-	new_head = (*stack)->next;
 	last = ft_lstlast(*stack);
-	last->next = *stack;
-	(*stack)->prev = last;
+	new_head = last;
+	(last->prev)->next = NULL;
+	new_head->next = *stack;
+	(*stack)->prev = new_head;
 	new_head->prev = NULL;
-	(*stack)->next = NULL;
-
 	return (new_head);
 }
+

@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_stack.c                                 :+:      :+:    :+:   */
+/*   min_moves.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 12:03:31 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/12 09:38:51 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/09 14:47:25 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/10 08:45:59 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	initialize_stack(t_list **head, int argc, char const *argv[])
+int	*min_moves(int **tab, int size_b)
 {
-	char	*content;
-	t_list	*new;
-	int		i;
+	int	i;
+	int	a_moves;
+	int	b_moves;
+	int	*min;
+	int	min_value;
 
 	i = 1;
-	*head = NULL;
-	new = 0;
-	content = 0;
-	while (i < argc)
+	min = tab[0];
+	min_value = absolute_value(tab[0][0]) + absolute_value(tab[0][1]);
+	while (i < size_b)
 	{
-		content = ft_strdup(argv[i++]);
-		new = d_lstnew(content);
-		d_lstadd_back(head, new);
+		b_moves = absolute_value(tab[i][0]);
+		a_moves = absolute_value(tab[i][1]);
+		if (a_moves + b_moves < min_value)
+		{
+			free(min);
+			min_value = a_moves + b_moves;
+			min = tab[i];
+		}
+		else
+			free(tab[i]);
+		i++;
 	}
+	return (min);
 }

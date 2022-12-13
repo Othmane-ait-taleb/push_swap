@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_pb.c                                            :+:      :+:    :+:   */
+/*   op_rrb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 09:47:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/12 17:03:45 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/11/28 11:50:03 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/12 18:23:07 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_list	*op_pb(t_list **stack_a, t_list **stack_b)
+t_list	*op_rrb(t_list **stack)
 {
-	t_list	*first;
 	t_list	*new_head;
-	
-	first = *stack_a;
-	new_head = (*stack_a)->next;
-	(first->next)->prev = NULL;
-	first->next = NULL;
-	first->prev = NULL;
-	d_lstadd_front(stack_b, first);
+	t_list	*last;
+
+	last = ft_lstlast(*stack);
+	new_head = last;
+	(last->prev)->next = NULL;
+	new_head->next = *stack;
+	(*stack)->prev = new_head;
+	new_head->prev = NULL;
 	return (new_head);
 }

@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_pb.c                                            :+:      :+:    :+:   */
+/*   reverse_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 09:47:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/12 17:03:45 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/12 14:57:48 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/12 15:14:37 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_list	*op_pb(t_list **stack_a, t_list **stack_b)
+void reverse_stack(t_list **stack)
 {
-	t_list	*first;
-	t_list	*new_head;
+	char *tmp;
+	t_list *last;
+	t_list *first;
+	int		size;
+	int		i;
 	
-	first = *stack_a;
-	new_head = (*stack_a)->next;
-	(first->next)->prev = NULL;
-	first->next = NULL;
-	first->prev = NULL;
-	d_lstadd_front(stack_b, first);
-	return (new_head);
+	i = 0;
+	size = ft_lstsize(*stack);
+	last = ft_lstlast(*stack);
+	first = *stack;
+	while (i < size / 2)
+	{
+		tmp = first->content;
+		first->content = last->content;
+		last->content = tmp;
+		first = first->next;
+		last = last->prev;
+		i++;
+	}
 }

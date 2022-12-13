@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_pb.c                                            :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 09:47:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/12 17:03:45 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/13 12:33:49 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/13 12:35:53 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_list	*op_pb(t_list **stack_a, t_list **stack_b)
+int	is_sorted(t_list *stack)
 {
-	t_list	*first;
-	t_list	*new_head;
-	
-	first = *stack_a;
-	new_head = (*stack_a)->next;
-	(first->next)->prev = NULL;
-	first->next = NULL;
-	first->prev = NULL;
-	d_lstadd_front(stack_b, first);
-	return (new_head);
+	t_list	*tmp_stack;
+	int		length;
+
+	length = 0;
+	tmp_stack = stack;
+	while (tmp_stack)
+	{
+		if (tmp_stack->next && ft_atoi(tmp_stack->content) > ft_atoi(tmp_stack->next->content))
+			return (1);
+		length++;
+		tmp_stack = tmp_stack->next;
+	}
+	if (length == 0)
+		return (1);
+	return (0);
 }
