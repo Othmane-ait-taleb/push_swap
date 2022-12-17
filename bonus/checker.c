@@ -87,7 +87,9 @@ int	main(int argc, char const *argv[])
 
 	stack_a = 0;
 	stack_b = 0;
-	if (argc < 2 || input_checker(argc, argv, &stack_a, &stack_tmp) == 0
+	if (argc == 1)
+		return (1);
+	if (input_checker(argc, argv, &stack_a, &stack_tmp) == 0
 		|| check_duplicates(stack_a))
 	{
 		ft_lstclear(&stack_tmp, free);
