@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 16:35:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/16 08:58:31 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/10/16 00:44:18 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/15 11:06:26 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t				len;
-	unsigned int		i;
+	t_list	*temp;
 
-	i = 0;
-	len = 0;
-	while (src[len])
-		len++;
-	if (dstsize == 0)
-		return (len);
-	while (i < dstsize - 1 && dstsize != 0 && src[i] != '\0')
+	if (!del)
+		return ;
+	while (*lst)
 	{
-		dst[i] = src[i];
-		i++;
+		del((*lst)->content);
+		temp = *lst;
+		*lst = temp->next;
+		free(temp);
 	}
-	dst[i] = '\0';
-	return (len);
+	*lst = NULL;
 }

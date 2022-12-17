@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:33:02 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/12 18:06:49 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:06:14 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,7 @@ void	filter_lis(int **array_and_size, t_list **stack_a, t_list **stack_b,
 		first = *stack_a;
 		size_a--;
 	}
+	free(array_and_size[0]);
+	free(array_and_size[1]);
+	free(array_and_size);
 }

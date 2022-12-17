@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   check_duplicates.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 16:35:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/16 08:58:31 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/16 10:27:32 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/17 11:36:20 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	check_duplicates(t_list *stack)
 {
-	size_t				len;
-	unsigned int		i;
+	int	*array;
+	int	size;
+	int	i;
+	int	j;
 
+	size = ft_lstsize(stack);
+	array = list_to_array(stack, size);
 	i = 0;
-	len = 0;
-	while (src[len])
-		len++;
-	if (dstsize == 0)
-		return (len);
-	while (i < dstsize - 1 && dstsize != 0 && src[i] != '\0')
+	while (i < size)
 	{
-		dst[i] = src[i];
+		j = 0;
+		while (j < size)
+		{
+			if (array[i] == array[j] && i != j)
+				return (1);
+			j++;
+		}
 		i++;
 	}
-	dst[i] = '\0';
-	return (len);
+	return (free(array), 0);
 }

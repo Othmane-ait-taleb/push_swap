@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 12:28:17 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/09 16:13:49 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/17 09:26:10 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// First part 
+// First part
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
@@ -55,12 +55,15 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
+int					ft_strcmp(char *str1, char *str2);
+size_t				ft_gnl_strlen(const char *s);
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 	struct s_list	*prev;
-}				t_list;
+}					t_list;
 
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);

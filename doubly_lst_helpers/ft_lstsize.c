@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 16:35:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/16 08:58:31 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/10/14 16:57:46 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/15 11:06:49 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	ft_lstsize(t_list *lst)
 {
-	size_t				len;
-	unsigned int		i;
+	int		count;
+	t_list	*p;
 
-	i = 0;
-	len = 0;
-	while (src[len])
-		len++;
-	if (dstsize == 0)
-		return (len);
-	while (i < dstsize - 1 && dstsize != 0 && src[i] != '\0')
+	p = lst;
+	count = 1;
+	if ((p) == 0)
+		return (0);
+	while (p->next)
 	{
-		dst[i] = src[i];
-		i++;
+		count++;
+		p = p->next;
 	}
-	dst[i] = '\0';
-	return (len);
+	return (count);
 }

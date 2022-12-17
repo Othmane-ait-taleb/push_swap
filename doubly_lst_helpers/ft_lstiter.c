@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 16:35:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/16 08:58:31 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/10/16 16:33:30 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/15 11:06:44 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t				len;
-	unsigned int		i;
+	t_list	*p;
 
-	i = 0;
-	len = 0;
-	while (src[len])
-		len++;
-	if (dstsize == 0)
-		return (len);
-	while (i < dstsize - 1 && dstsize != 0 && src[i] != '\0')
+	if (lst)
 	{
-		dst[i] = src[i];
-		i++;
+		p = lst;
+		while (p->next)
+		{
+			f(p->content);
+			p = p->next;
+		}
+		if (p->next == NULL)
+			f(p->content);
 	}
-	dst[i] = '\0';
-	return (len);
 }

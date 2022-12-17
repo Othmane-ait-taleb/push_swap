@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 12:06:47 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/13 10:20:13 by otait-ta         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:39:49 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	pos_in_a(int *array_a, int size_a, int number)
 	if (moves == 0)
 		return (0);
 	else if (moves > size_a / 2)
-		return -(size_a - moves);
+		return (-(size_a - moves));
 	return ((moves));
 }
 
@@ -78,11 +78,7 @@ int	**put_in_correct_position(t_list **stack_a, int size_a, t_list **stack_b,
 		else
 			tmp[0] = -(size_b - i);
 		tmp[1] = pos_in_a(array_a, size_a, array_b[i]);
-			// printf("\n b moves : %d a moves : %d\n",tmp[0],tmp[1] );
-
 		pos_tab[i++] = tmp;
 	}
-	free(array_a);
-	free(array_b);
-	return (pos_tab);
+	return (free(array_a), free(array_b), pos_tab);
 }

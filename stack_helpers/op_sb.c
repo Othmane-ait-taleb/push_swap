@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_pa.c                                            :+:      :+:    :+:   */
+/*   op_sb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 09:47:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/17 10:48:03 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/16 12:40:02 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/17 10:33:39 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_list	*op_pa(t_list **stack_a, t_list **stack_b)
+t_list	*op_sb(t_list **stack_b)
 {
-	t_list	*first;
-	t_list	*new_head;
+	t_list	*second;
 
-	if (ft_lstsize(*stack_b) == 0)
+	if (ft_lstsize(*stack_b) <= 1)
 		return (*stack_b);
-	first = *stack_b;
-	new_head = (*stack_b)->next;
-	if (first->next)
+	if (ft_lstsize(*stack_b) == 2)
 	{
-		(first->next)->prev = NULL;
-		first->next = NULL;
-		first->prev = NULL;
+		second = (*stack_b)->next;
+		(*stack_b)->next = NULL;
+		(*stack_b)->prev = second;
+		second->next = (*stack_b);
+		second->prev = NULL;
+		return (second);
 	}
-	d_lstadd_front(stack_a, first);
-	return (new_head);
+	second = (*stack_b)->next;
+	(*stack_b)->next = second->next;
+	(second->next)->prev = *stack_b;
+	(*stack_b)->prev = second;
+	second->next = *stack_b;
+	second->prev = NULL;
+	return (second);
 }

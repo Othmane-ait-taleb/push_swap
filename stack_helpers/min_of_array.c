@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   min_of_array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 16:35:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2022/12/16 08:58:31 by otait-ta         ###   ########.fr       */
+/*   Created: 2022/12/15 09:02:50 by otait-ta          #+#    #+#             */
+/*   Updated: 2022/12/15 09:03:32 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	min_of_array(int *array_a, int size_a)
 {
-	size_t				len;
-	unsigned int		i;
+	int	min;
+	int	i;
 
-	i = 0;
-	len = 0;
-	while (src[len])
-		len++;
-	if (dstsize == 0)
-		return (len);
-	while (i < dstsize - 1 && dstsize != 0 && src[i] != '\0')
+	min = 0;
+	i = 1;
+	while (i < size_a)
 	{
-		dst[i] = src[i];
+		if (array_a[i] <= array_a[min])
+			min = i;
 		i++;
 	}
-	dst[i] = '\0';
-	return (len);
+	return (min);
 }
