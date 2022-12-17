@@ -6,7 +6,7 @@
 #    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:20:33 by otait-ta          #+#    #+#              #
-#    Updated: 2022/12/17 12:22:45 by otait-ta         ###   ########.fr        #
+#    Updated: 2022/12/17 13:10:43 by otait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(NAME): $(OBJ) ${PS_HEADR} ${LIB_HEADR} ${MANDA_OBJ}
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean: 
-		$(RM) $(OBJ) $(BONUS_OBJS)
+		$(RM) $(OBJ) $(BONUS_OBJS) $(MANDA_OBJ)
 
 fclean: clean
 		$(RM) $(NAME) $(CHECKER)
